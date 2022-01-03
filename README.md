@@ -14,7 +14,7 @@ Commands:
     7) cpu-per  | CPU Info
     8) help     | Open Help Menu
     9) logo     | View Logo
-   10) download | File Download
-   11) exit     | Exit the SEAL  
+    10) download | File Download
+    11) exit     | Exit the SEAL  
 
 Python3 
