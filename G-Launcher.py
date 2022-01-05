@@ -1,3 +1,4 @@
+from email import message
 import os
 import sys
 from types import ClassMethodDescriptorType, prepare_class
@@ -5,9 +6,14 @@ import psutil
 import socket
 import subprocess
 import requests
+import smtplib
+import webbrowser
+import ssl
+import time
 import urllib.request
 from bs4 import BeautifulSoup as bs
 import speedtest
+import platform as plat
 from sys import platform
 
 
@@ -37,6 +43,12 @@ def command():
         exit2()
     elif com == 'download':
         download()
+    elif com == 'mail':
+        mail()
+    elif com == 'license':
+        license()
+    elif com == 'sysinfo':
+        sysinfo()
     elif com == 'help':
         help()
     else :
@@ -134,6 +146,30 @@ def download():
     urllib.request.urlretrieve(urldow,docname)
     print("|!| Success , Downloaded "+docname+" |!|")
 
+def license():
+    print("|-| Loading GitHub Link |-|")
+    print("|-| Link : https://www.github.com/arda6/SEAL |-|")
+    time.sleep(2)
+    webbrowser.get("https://www.github.com/arda6/SEAL")
+
+def mail():
+    port = '587'
+    server = input("|=| STMP Server |=| ")
+    send = input("|=| Sender Mail Adress |=| ")
+    rec = input("|=| Reciver EMAIL Adress |=| ")
+    passw = input("|=| EMAIL Password |=| ")
+    mesaj = input("|=| Send Message |=| ")
+    context = ssl.create_default_context()
+    with smtplib.SMTP(server, port) as server:
+        server.ehlo()  
+        server.starttls(context=context)
+        server.ehlo()  
+        server.login(send, passw)
+        server.sendmail(send, rec, message)
+
+def sysinfo():
+    print("|?| Machine : "+str(plat.machine())+ " |?|\n|?| Version : "+str(plat.version())+" |?|\n|?| Platform : "+str(plat.platform())+" |?|\n|?| Architecture : "+str(plat.architecture())+" |?|\n|?| Processor : "+str(plat.processor())+" |?|")
+
 def help():
     print("""
     1) system   | System Info
@@ -146,9 +182,13 @@ def help():
     8) help     | Open Help Menu
     9) logo     | View Logo
    10) download | File Download
-   11) exit     | Exit the SEAL  
+   11) mail     | Send Email
+   12) license  | Get GitHub Link
+   13) sysinfo  | Get Detailed System Info
+   14) exit     | Exit the SEAL  
     
      """)
+
 
 #listdir()
 #name()
