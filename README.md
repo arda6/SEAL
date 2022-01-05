@@ -60,7 +60,7 @@ Usage :
         Name                   : Wi-Fi 2
         Description            : 802.11n USB Wireless LAN Card #2
         GUID                   : GUID
-        Physical address       : 20:e0:17:0c:a3:1a
+        Physical address       : Phy. Adress
         State                  : State
         SSID                   : Wi-Fi Name
         BSSID                  : BSSID
